@@ -1,3 +1,34 @@
+<?php
+    include 'connection.php';
+
+    if(isset($_POST['submit-btn'])){
+        $filter_name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+        $name = mysqli_real_escape_string($conn, $filter_name);
+
+        $filter_email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
+        $email = mysqli_real_escape_string($conn, $filter_email);
+
+        $filter_password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+        $password = mysqli_real_escape_string($conn, $filter_password);
+
+        $filter_cpassword = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+        $cpassword = mysqli_real_escape_string($conn, $filter_cpassword);
+
+        $select_user = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email'") or die('query failed');
+
+        if(mysqli_num_rows($select_user) > 0){
+            $message[] = 'user already exists';
+        } else {
+            if($password != $cpassword){
+                $message[] = 'confirm password not matched';
+            } else {
+                mysqli_query($conn, "INSERT INTO `users` (name, email, password) VALUES('$name', '$email', '$password')") or die('query failed');
+                $message[] = 'registered successfully';
+                header('location:login.php');
+            }
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +40,17 @@
 </head>
 <body>
     <section class="form-container">
+    <?php 
+        if (isset($message)) {
+            foreach($message as $message) {
+                echo `
+                <div class="message">
+                <span>'.$message'</span>
+                <i class="bi bi-x-circle" onClick="this.parentElement.remove()"></i>
+                </div>`;
+            }
+        }   
+    ?>
         <form action="" method="post">
             <h1>register now</h1>
             <input type="text" name="name" placeholder="enter your name" required>
