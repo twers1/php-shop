@@ -61,14 +61,27 @@
             <!-- Заказы  -->
             <div class="box">
                 <?php
+                    $select_orders = mysqli_query($conn, "SELECT * FROM `order`") or die('query failed');
+                    $num_of_orders = mysqli_num_rows($select_orders);
+                ?>
+                <h3>
+                    <?php
+                     echo $num_of_orders;
+                    ?></h3>
+                <p>order placed</p>
+                </h3>
+            </div>
+            <!-- Продукты  -->
+            <div class="box">
+                <?php
                     $select_products = mysqli_query($conn, "SELECT * FROM `order`") or die('query failed');
                     $num_of_products = mysqli_num_rows($select_products);
                 ?>
                 <h3>
-                    $ <?php
+                    <?php
                      echo $num_of_products;
-                    ?>/-</h3>
-                <p>products added</p>
+                    ?></h3>
+                <p>product added</p>
                 </h3>
             </div>
             <!-- Пользователи -->
