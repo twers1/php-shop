@@ -11,7 +11,7 @@
         $filter_password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
         $password = mysqli_real_escape_string($conn, $filter_password);
 
-        $filter_cpassword = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+        $filter_cpassword = filter_var($_POST['cpassword'], FILTER_SANITIZE_STRING);
         $cpassword = mysqli_real_escape_string($conn, $filter_cpassword);
 
         $select_user = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email'") or die('query failed');
@@ -19,8 +19,8 @@
         if(mysqli_num_rows($select_user) > 0){
             $message[] = 'user already exists';
         } else {
-            if($password != $cpassword){
-                $message[] = 'confirm password not matched';
+            if($password !== $cpassword){
+                $message[] = 'Password and confirm password do not match';
             } else {
                 mysqli_query($conn, "INSERT INTO `users` (name, email, password) VALUES('$name', '$email', '$password')") or die('query failed');
                 $message[] = 'registered successfully';
@@ -43,11 +43,12 @@
     <?php 
         if (isset($message)) {
             foreach($message as $message) {
-                echo `
+                echo '
                 <div class="message">
-                <span>'.$message'</span>
+                <span>' . $message . '</span>
                 <i class="bi bi-x-circle" onClick="this.parentElement.remove()"></i>
-                </div>`;
+                </div>';
+                
             }
         }   
     ?>
@@ -56,7 +57,7 @@
             <input type="text" name="name" placeholder="enter your name" required>
             <input type="email" name="email" placeholder="enter your email" required>
             <input type="password" name="password" placeholder="enter your passsword" required>
-            <input type="password" name="cpassword" placeholder="confirm your passsword" required>
+            <input type="password" name="cpassword" placeholder="confirm your password" required>
             <input type="submit" name="submit-btn" placeholder="register now" class="btn">
             <p>already have an account? <a href="login.php">login now</a></p>
         </form>
