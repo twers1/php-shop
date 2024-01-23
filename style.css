@@ -37,6 +37,7 @@ ul {
 
 .title h1 {
     font-size: 3rem;
+    text-transform: uppercase;
 }
 
 .title span {
@@ -91,7 +92,8 @@ input[type=submit]{
     cursor: pointer;
 }
 
-.message {
+.message,
+.empty {
     text-align: center;
     text-transform: capitalize;
     margin: 0 auto;
@@ -107,6 +109,13 @@ input[type=submit]{
 
 .message i {
     cursor: pointer;
+}
+
+.empty {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
 }
 /*--------------------*/
 
