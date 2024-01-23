@@ -365,9 +365,82 @@ header .icons i:hover {
 /*-------------admin product page----------------*/
 .add-products {
     margin-top: -3.5rem;
-    
+    background: #f5f5f5;
+    position: relative;
 }
 
+.show-products {
+    position: relative;
+    background: var(--orange);
+    margin-top: -3.5rem;
+}
+
+.show-products::before {
+    background-image: url('img/14.png');
+    top: -100px;
+}
+
+.show-products .box-container {
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+
+.box-container .box {
+    line-height: 2;
+}
+
+.box-container .box h4 {
+    text-transform: capitalize;
+}
+
+.box-container .box img {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.edit,
+.delete {
+    color: black;
+    background: var(--orange);
+    padding: .5rem 1.5rem;
+    text-transform: capitalize;
+    line-height: 2;
+}
+
+.update-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    background: var(--orange);
+    z-index: 1100;
+    padding: 2rem;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    flex-direction: column;
+}
+
+.update-container form {
+    box-shadow: var(--box-shadow);
+    width: 50%;
+    background: #fff;
+    padding: 1rem;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.update-container .edit,
+.update-container .btn {
+    width: 40%;
+    cursor: pointer;
+}
+
+.update-container form img {
+    width: 60%;
+}
 /*---------------------media screen----------*/
 @media (max-width: 991px) {
     #menu-btn {

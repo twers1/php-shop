@@ -19,3 +19,12 @@ userBtn.addEventListener('click', function(){
     userBtn.classList.toggle('active')
 })
 
+
+let closeBtn = document.querySelector('#close-form');
+
+closeBtn.addEventListener('click', () => {
+    document.querySelector('.update-container').style.display = 'none';
+});
+
+
+

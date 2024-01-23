@@ -32,12 +32,45 @@
                 if($product_image_size > 2000000){
                     $message[] = 'image size is too large';
                 } else {
-                    // move_uploaded_file($product_image_tmp_name, $product_image_folder);
+                    move_uploaded_file($product_image_tmp_name, $product_image_folder);
                     $message[] = 'product added successfully';
                 }
             } else {
                 $message[] = 'product could not be added';
             }
+        }
+    }
+
+    // удаление продуктов
+    if(isset($_GET['delete'])){
+        $delete_id = $_GET['delete'];
+        $select_delete_image = mysqli_query($conn, "SELECT image FROM `products` WHERE id = '$delete_id'") or die('query failed');
+
+        $fetch_delete_image = mysqli_fetch_assoc($select_delete_image);
+        unlink('uploaded_img/'.$fetch_delete_image['image']);
+
+        mysqli_query($conn, "DELETE FROM `products` WHERE id = '$delete_id'") or die('query failed');
+        mysqli_query($conn, "DELETE FROM `cart` WHERE pid = '$delete_id'") or die('query failed');
+        mysqli_query($conn, "DELETE FROM `wishlist` WHERE pid = '$delete_id'") or die('query failed');
+
+        header('location:admin_product.php');
+    }
+
+    // обновление продуктов
+    if(isset($_POST['update_product'])){
+        $update_id = $_POST['update_id'];
+        $update_name = $_POST['update_name'];
+        $update_price = $_POST['update_price'];
+        $update_detail = $_POST['update_detail'];
+        $update_image = $_FILES['update_image']['name'];
+        $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
+        $update_image_folder = "uploaded_img/".$update_image;
+
+        $update_query = mysqli_query($conn, "UPDATE `products` SET name = '$update_name', price = '$update_price', product_detail = '$update_detail', image = '$update_image' WHERE id = '$update_id'") or die('query failed');
+
+        if($update_query){
+            move_uploaded_file($update_image_tmp_name, $update_image_folder);
+            header('location:admin_product.php');
         }
     }
 ?>
@@ -87,11 +120,13 @@
                     while($fetch_products = mysqli_fetch_assoc($select_products)){
                 ?>
                 <div class="box">
-                    <img src="uploaded_img/<?= $fetch_products['image']; ?>">
-                    <div class="name"><?= $fetch_products['name']; ?></div>
-                    <div class="price">$<?= $fetch_products['price']; ?>/-</div>
-                    <a href="admin_product.php?update=<?= $fetch_products['id']; ?>" class="option-btn">update</a>
-                    <a href="admin_product.php?delete=<?= $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('delete this product?');">delete</a>
+                    <img src="uploaded_img/<?php echo $fetch_products['image']; ?>">
+                    <p><?php echo $fetch_products['name']; ?></p>
+                    <h4>$<?php echo $fetch_products['price']; ?>/-</h4>
+                    <details><?php echo $fetch_products['product_detail']; ?></details>
+                    <a href="admin_product.php?edit=<?php echo $fetch_products['id']; ?>" class="edit">edit</a>
+                    <a href="admin_product.php?delete=<?php echo $fetch_products['id']; ?>" class="delete"
+                     onClick="return confirm('want to delete this product');">delete</a>
                 </div>
                 <?php
                     }
@@ -100,6 +135,36 @@
                 }
                 ?>
             </div>
+        </section>
+        <div class="line"></div>
+        <section class="update-container">
+            <?php 
+            if(isset($_GET['edit'])){
+                $edit_id = $_GET['edit'];
+                $edit_query = mysqli_query($conn, "SELECT * FROM `products` WHERE id = '$edit_id'") or die('query failed');
+                if(mysqli_num_rows($edit_query) > 0){
+                    while($fetch_edit = mysqli_fetch_assoc($edit_query)){
+                        
+                    
+                
+            
+            ?>
+            <form action="" method="POST" enctype="multipart/form-data">
+                <img src="uploaded_img"<?php echo $fetch_edit['image'];?>/>
+                <input type="hidden" name="update_id" value="<?php echo $fetch_edit['id'];?>">
+                <input type="text" name="update_name" value="<?php echo $fetch_edit['name'];?>">
+                <input type="number" name="update_price" min="0" value="<?php echo $fetch_edit['price'];?>">
+                <textarea name="update_detail"><?php echo $fetch_edit['product_detail'];?></textarea>
+                <input type="file" name="update_image" accept="image/*">
+                <input type="submit" name="update_product" value="update" class="edit">
+                <input type="reset" name="" value="cancel" class="option-btn btn" id="close-form">
+            </form>
+            <?php
+                    }
+            }
+            echo "<script>document.querySelector('.update-container').style.display = 'block';</script>";
+        }
+            ?>
         </section>
    </div>
     <script type="text/javascript" src="script.js"></script>

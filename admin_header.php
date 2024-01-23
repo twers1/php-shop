@@ -25,7 +25,7 @@
                 <p>username : <span><?php echo $_SESSION['admin_name']; ?></span></p>
                 <p>Email : <span><?php echo $_SESSION['admin_email']; ?></span></p>
                 <form action="" method="post">
-                    <button type="submit" name="logout_btn" class="logout-btn">logout</button>
+                    <button type="submit" name="logout_btn" class="logout_btn">logout</button>
                 </form>
             </div>
         </div>
