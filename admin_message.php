@@ -67,12 +67,12 @@
          
         }
         else {
-            echo `
-            <div class="empty">
+            echo "
+            <div class='empty'>
                 <p>no messages</p>
             </div>
-            `;
-         }
+            ";
+        }        
         ?>
     </div>
    </section>
