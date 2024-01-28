@@ -16,9 +16,9 @@
     if(isset($_GET['delete'])){
         $delete_id = $_GET['delete'];
 
-        mysqli_query($conn, "DELETE FROM `wishlist` WHERE pid = '$delete_id'") or die('query failed');
+        mysqli_query($conn, "DELETE FROM `message` WHERE id = '$delete_id'") or die('query failed');
 
-        header('location:admin_product.php');
+        header('location:admin_message.php');
     }
 ?>
 <!DOCTYPE html>
@@ -44,7 +44,7 @@
         }
      }
      ?>
-   <div class="line2"></div>
+   <div class="line4"></div>
    <section class="message-container">
     <h1 class="title">unread message</h1>
     <div class="box-container">
@@ -60,7 +60,7 @@
             <p>name: <span><?php echo $fetch_message['name']; ?></span></p>
             <p>email: <span><?php echo $fetch_message['email']; ?></span></p>
             <p><?php echo $fetch_message['message']; ?></p>
-            <a href="admin_message.php?delete=<?php echo $fetch_message['id']; ?>" class="delete-btn" onclick="return confirm('delete this message?');"></a>
+            <a href="admin_message.php?delete=<?php echo $fetch_message['id']; ?>" class="delete-btn" onclick="return confirm('delete this message?');">delete</a>
         </div>
         <?php
          }
@@ -76,6 +76,7 @@
         ?>
     </div>
    </section>
+   <div class="line2"></div>
     <script type="text/javascript" src="script.js"></script>
 </body>
 </html>

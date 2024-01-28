@@ -74,7 +74,8 @@ ul {
 
 input, 
 button,
-textarea {
+textarea,
+select {
     outline: none;
     border: 1px solid #55555544;
     background: transparent;
@@ -117,7 +118,7 @@ input[type=submit]{
     justify-content: center;
     padding: 1rem;
 }
-/*--------------------*/
+/*--------form container------------*/
 
 .form-container {
     background: var(--orange);
@@ -128,7 +129,10 @@ input[type=submit]{
     min-height: 100vh;
 }
 
-.form-container::before {
+.form-container::before,
+.show-products::before,
+.message-container::before,
+.order-container::before {
     content: '';
     position: absolute;
     background: url('img/img6.png');
@@ -378,13 +382,16 @@ header .icons i:hover {
     position: relative;
 }
 
-.show-products {
+.show-products,
+.message-container,
+.order-container {
     position: relative;
     background: var(--orange);
     margin-top: -3.5rem;
 }
 
-.show-products::before {
+.show-products::before,
+.order-container::before {
     background-image: url('img/14.png');
     top: -100px;
 }
@@ -407,7 +414,8 @@ header .icons i:hover {
 }
 
 .edit,
-.delete {
+.delete,
+.delete-btn {
     color: black;
     background: var(--orange);
     padding: .5rem 1.5rem;
@@ -449,6 +457,69 @@ header .icons i:hover {
 
 .update-container form img {
     width: 60%;
+}
+
+
+.message-container .title,
+.order-container .title {
+    text-transform: uppercase;
+    padding-top: 3rem;
+}
+
+.order-container {
+    padding: 3% 7%;
+}
+
+.order-container .box-container {
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.box-container .box {
+    text-align: left;
+    padding: 1rem 2rem;
+}
+
+.order-container .box p {
+    margin-bottom: .5rem;
+    text-transform: capitalize;
+    color: hotpink;
+}
+
+.order-container .box span {
+    color: #555;
+}
+
+.order-container form {
+    text-align: center;
+}
+
+.order-container form select {
+    width: 100%;
+    margin: 1rem auto;
+    padding: .5rem 0;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.order-container form input {
+    width: 40%;
+    border-radius: unset;
+    border: none;
+    background: var(--orange);
+    color: #000;
+    text-transform: capitalize;
+}
+
+.order-container form input::hover,
+.order-container .box .delete::hover {
+    color: #fff;
+    background: #000;
+}
+
+.order-container .box .delete  {
+    padding: .7rem 4rem;
 }
 /*---------------------media screen----------*/
 @media (max-width: 991px) {
