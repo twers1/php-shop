@@ -49,7 +49,7 @@ ul {
 
 .line,
 .line4 {
-    background-image: url('img/img5.png');
+    background-image: url('');
     width: 100%;
     height: 100px;
     margin-top: -3.6rem;
@@ -61,7 +61,7 @@ ul {
 
 .line2,
 .line3{
-    background-image: url('img/img3.png');
+    background-image: url('');
     width: 100%;
     height: 100px;
     margin-top: -3.5rem;
@@ -91,6 +91,13 @@ button {
 
 input[type=submit]{
     cursor: pointer;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1rem));
+    justify-content: center;
+    align-items: center;
 }
 
 .message,
@@ -249,6 +256,431 @@ header .icons i:hover {
 .header .user-box.active {
     transform: scale(1.0);
     transition: .2s linear;
+}
+/*-----------------home slider--------------*/
+.container-fluid {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slider-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-item img {
+    width: 100%;
+}
+
+.slider-caption {
+    text-align: center;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+}
+
+.slider-caption h1 {
+    font-size: 40px;
+}
+
+.slider-caption p {
+    font-size: 20px;
+    margin-bottom: 2rem;
+    line-height: 2;
+}
+
+.next,
+.prev,
+.next1,
+.prev1 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f7b90f;
+    box-shadow: var(--box-shadow);
+    z-index: 2;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.controls i {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f7b90f;
+    box-shadow: var(--box-shadow);
+    z-index: 2;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.next, .next1 {
+    right: 1rem;
+}
+
+.prev, .prev1 {
+    left: 1rem;
+}
+
+/*-----------------services--------------*/
+.services {
+    background-repeat: no-repeat;
+    padding: 10% 5%;
+    position: relative;
+}
+
+.services::before,
+.testimonial-fluid::before {
+    content: '';
+    position: absolute;
+    background-image: url('');
+    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+    width: 189px;
+    height: 409px;
+    z-index: -1;
+}
+
+.services .row .box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+}
+
+.services .row .box img {
+    background-color: var(--orange);
+    padding: 1rem;
+    border-radius: 50%;
+}
+
+.services .row .box div {
+    margin-left: 2rem;
+}
+
+.services .row .box h {
+    font-size: 25px;
+    color: #555;
+    margin-bottom: .3rem;
+}
+
+/*-----------------story--------------*/
+
+.story,
+.discover {
+    padding: 8% 6%;
+    background-color: #f5f5f5;
+    background-image: url('');
+    background-repeat: no-repeat;
+    position: relative;
+    margin-top: -3.5rem;
+}
+
+.story::before {
+    content: '';
+    background: url('');
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: -100px;
+    right: 0;
+    width: 170px;
+    height: 250px;
+    z-index: 1;
+    background-size: 169px;
+}
+
+.story .row {
+    grid-template-columns: repeat(auto-fit, minmax(40rem, 1rem));
+}
+
+.story .row .box span {
+    font-size: 40px;
+    color: var(--orange);
+}
+
+.story .row .box h1 {
+    margin: 1rem 0;
+}
+
+.story .row .box p {
+    color: #555;
+    line-height: 2;
+    margin: 1rem 0;
+    font-size: 18px;
+}
+
+.story .row .box .btn {
+    background: var(--orange);
+    color: #fff;
+}
+
+.story .row .box img {
+    width: 100%;
+}
+
+/*-----------------testimoial--------------*/
+.testimonial-fluid {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--orange);
+    margin-top: -3rem;
+}
+
+.testimonial-fluid::before {
+    background-image: url('');
+    top: -120px;
+    left: -100px;
+    width: 320px;
+    height: 254px;
+    background-size: 320px;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.testimonial-fluid::after {
+    content: '';
+    background-image: url('');
+    position: absolute;
+    background-repeat: no-repeat;
+    bottom: -120px;
+    width: 330px;
+    height: 226px;
+    right: 0%;
+    background-size: 330px;
+    z--index: 1;
+}
+
+.testimonial-fluid .title {
+    padding-top: 5rem;
+}
+
+.testimonial-slider {
+    padding-bottom: 3rem;
+    height: 70vh;
+    position: relative;
+}
+
+.testimonial-item {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+    text-align: center;
+}
+
+.testimonial-item img {
+    text-align: center;
+    margin: 1.4rem auto;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: var(--box-shadow);
+}
+
+.next1,
+.prev1 {
+    top: 60%;
+}
+
+.testimonial-caption {
+    line-height: 1.5;
+}
+
+/*-----------------discover-------------*/
+.discover::before {
+    content: '';
+    background: url('');
+    background-repeat: no-repeat;
+    position: absolute;
+    top: -180px;
+    left: -100;
+    width: 425px;
+    height: 420px;
+    z-index: 1;
+    background-size: 450px;
+}
+
+.discover::after {
+    content: '';
+    background: url('');
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: -120px;
+    right: 0;
+    width: 300px;
+    height: 230px;
+    z-index: 1;
+    background-size: 300px;
+}
+
+.discover .detail {
+    max-width: 60%;
+    margin: 1rem auto;
+    text-align: center;
+    line-height: 2;
+}
+
+.discover .detail p {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 1rem;
+}
+
+.discover .detail span {
+    color: var(--orange);
+    font-size: 20px;
+}
+
+.discover .detail .btn {
+    background-color: var(--orange);
+    color:  #f5f5f5;
+}
+
+.discover .img-box {
+    text-align: center;
+}
+
+.discover .img-box img {
+    width: 50%;
+    margin-top: 2rem;
+    margin-bottom: -5rem;
+}
+/*-----------------footer--------------*/
+footer {
+    background: var(--orange);
+    width: 100%;
+    margin-top: -3.5rem;
+    position: relative;
+}
+
+footer::before {
+    position: absolute;
+    content: '';
+    background-image: url('img/hex.pnh');
+    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+    opacity: .2;
+    width: 100%;
+    height: 100%''
+}
+
+footer .inner-footer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 10rem;
+    z-index: 101;
+}
+
+footer .inner-footer .card {
+    margin: .5rem;
+}
+
+footer .inner-footer .card h3{
+    font-weight: normal;
+    text-transform: uppercase;
+    padding-top: .5rem;
+    position: relative;
+}
+
+footer .inner-footer .card h3::before {
+    position: absolute;
+    content: '';
+    width: 60%;
+    height: 2px;
+    background: #000;
+    bottom: 0;
+    left: 0;
+}
+
+footer .inner-footer .card h3::after {
+    position: absolute;
+    content: '';
+    width: 10%;
+    height: 5px;
+    background-color: #fff;
+    right: 40%;
+    bottom: 0;
+}
+
+footer .inner-footer .card li {
+    cursor: pointer;
+    line-height: 1.5rem;
+    text-transform: capitalize;
+    font-size: 16px;
+}
+
+footer .inner-footer .card li:nth-child(1),
+footer .inner-footer .card p {
+    margin-top: 1rem;
+}
+
+footer .inner-footer .card p {
+    margin-bottom: 1rem;
+    font-size: 16px;
+}
+
+footer .inner-footer .card input {
+    width: 80%;
+    box-shadow: none;
+    border: 1px solid #000;
+    border-radius: unset;
+    margin: 0;
+}
+
+footer .inner-footer .card .input-field i {
+    color: #fff;
+    background: rgb(255 255 255/40%);
+    padding: 1rem;
+    margin-left: .3rem;
+    cursor: pointer;
+}
+
+footer .inner-footer .card .social-links {
+    margin-top: 1rem;
+}
+
+footer .inner-footer .card .social-links i {
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+    line-height: 50px;
+    text-align: center;
+    color: var(--orange);
+    cursor: pointer;
+    padding: .6rem;
+    margin-left: 1rem;
+}
+
+footer .bottom-footer {
+    text-transform: capitalize;
+    text-align: center;
+    padding: 3rem 0;
+    border-top: 1px solid #000;
 }
 
 /*---------------------media screen----------*/
