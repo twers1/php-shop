@@ -1,15 +1,15 @@
 <?php 
-    include 'connection.php';
+    include '../connection.php';
     session_start();
     $admin_id = $_SESSION['admin_name'];
 
     if(!isset($admin_id)){
-        header('location:login.php');
+        header('location:../login.php');
     }
 
     if(isset($_POST['logout'])){
         session_destroy();
-        header('location:login.php');
+        header('location:../login.php');
     }
 
     // добавление продуктов в бд
@@ -20,7 +20,7 @@
         $product_image = $_FILES['image']['name'];
         $product_image_size = $_FILES['image']['size'];
         $product_image_tmp_name = $_FILES['image']['tmp_name'];
-        $product_image_folder = 'uploaded_img/'.$product_image;
+        $product_image_folder = '../uploaded_img/'.$product_image;
 
         $select_product_name = mysqli_query($conn, "SELECT name FROM `products` WHERE name = '$product_name'") or die('query failed');
 
@@ -47,13 +47,13 @@
         $select_delete_image = mysqli_query($conn, "SELECT image FROM `products` WHERE id = '$delete_id'") or die('query failed');
 
         $fetch_delete_image = mysqli_fetch_assoc($select_delete_image);
-        unlink('uploaded_img/'.$fetch_delete_image['image']);
+        unlink('../uploaded_img/'.$fetch_delete_image['image']);
 
         mysqli_query($conn, "DELETE FROM `products` WHERE id = '$delete_id'") or die('query failed');
         mysqli_query($conn, "DELETE FROM `cart` WHERE pid = '$delete_id'") or die('query failed');
         mysqli_query($conn, "DELETE FROM `wishlist` WHERE pid = '$delete_id'") or die('query failed');
 
-        header('location:admin_product.php');
+        header('location:../admin/admin_product.php');
     }
 
     // обновление продуктов
@@ -64,13 +64,13 @@
         $update_detail = $_POST['update_detail'];
         $update_image = $_FILES['update_image']['name'];
         $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
-        $update_image_folder = "uploaded_img/".$update_image;
+        $update_image_folder = "../uploaded_img/".$update_image;
 
         $update_query = mysqli_query($conn, "UPDATE `products` SET name = '$update_name', price = '$update_price', product_detail = '$update_detail', image = '$update_image' WHERE id = '$update_id'") or die('query failed');
 
         if($update_query){
             move_uploaded_file($update_image_tmp_name, $update_image_folder);
-            header('location:admin_product.php');
+            header('location:../admin/admin_product.php');
         }
     }
 ?>
@@ -80,11 +80,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../styles/admin.css">
     <title>admin product page</title>
 </head>
 <body>
-     <?php include 'admin_header.php';?>
+     <?php include '../admin/admin_header.php';?>
    <div class="line2">
         <section class="add-products form-container">
             <form action="" method="POST" enctype="multipart/form-data">
@@ -120,12 +120,12 @@
                     while($fetch_products = mysqli_fetch_assoc($select_products)){
                 ?>
                 <div class="box">
-                    <img src="uploaded_img/<?php echo $fetch_products['image']; ?>">
+                    <img src="../uploaded_img/<?php echo $fetch_products['image']; ?>">
                     <p><?php echo $fetch_products['name']; ?></p>
                     <h4>$<?php echo $fetch_products['price']; ?>/-</h4>
                     <details><?php echo $fetch_products['product_detail']; ?></details>
-                    <a href="admin_product.php?edit=<?php echo $fetch_products['id']; ?>" class="edit">edit</a>
-                    <a href="admin_product.php?delete=<?php echo $fetch_products['id']; ?>" class="delete"
+                    <a href="../admin/admin_product.php?edit=<?php echo $fetch_products['id']; ?>" class="edit">edit</a>
+                    <a href="../admin/admin_product.php?delete=<?php echo $fetch_products['id']; ?>" class="delete"
                      onClick="return confirm('want to delete this product');">delete</a>
                 </div>
                 <?php
@@ -150,7 +150,7 @@
             
             ?>
             <form action="" method="POST" enctype="multipart/form-data">
-                <img src="uploaded_img"<?php echo $fetch_edit['image'];?>/>
+                <img src="../uploaded_img"<?php echo $fetch_edit['image'];?>/>
                 <input type="hidden" name="update_id" value="<?php echo $fetch_edit['id'];?>">
                 <input type="text" name="update_name" value="<?php echo $fetch_edit['name'];?>">
                 <input type="number" name="update_price" min="0" value="<?php echo $fetch_edit['price'];?>">
@@ -167,6 +167,6 @@
             ?>
         </section>
    </div>
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="../scripts/admin.js"></script>
 </body>
 </html>

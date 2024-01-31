@@ -17,7 +17,7 @@ if (isset($_POST['submit-btn'])) {
             $_SESSION['admin_name'] = $row['name'];
             $_SESSION['admin_email'] = $row['email'];
             $_SESSION['admin_id'] = $row['id'];
-            header('location:admin_panel.php');
+            header('location:admin/admin_panel.php');
         } else if ($row['user_type'] == 'user') {
             $_SESSION['user_name'] = $row['name'];
             $_SESSION['user_email'] = $row['email'];
@@ -37,7 +37,7 @@ if (isset($_POST['submit-btn'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="./styles/admin.css">
     <title>Login page</title>
 </head>
 <body>

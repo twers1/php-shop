@@ -9,13 +9,13 @@
 <body>
     <header class="header">
         <div class="flex">
-            <a href="admin_panel.php" class="logo"><img src="img/logo.png" alt="logo"></a>
+            <a href="../admin/admin_panel.php" class="logo"><img src="img/logo.png" alt="logo"></a>
             <nav class="navbar">
-                <a href="admin_panel.php">home</a>
-                <a href="admin_product.php">products</a>
-                <a href="admin_order.php">orders</a>
-                <a href="admin_user.php">users</a>
-                <a href="admin_message.php">message</a>
+                <a href="../admin/admin_panel.php">home</a>
+                <a href="../admin/admin_product.php">products</a>
+                <a href="../admin/admin_order.php">orders</a>
+                <a href="../admin/admin_user.php">users</a>
+                <a href="../admin/admin_message.php">message</a>
             </nav>
             <div class="icons">
                 <i class="bx bxs-user" id="user-btn"></i>
@@ -37,5 +37,6 @@
         </div>
     </div>
     <div class="line"></div>
+    <script src="../scripts/admin.js"></script>
 </body>
 </html>

@@ -1,15 +1,15 @@
 <?php 
-    include 'connection.php';
+    include '../connection.php';
     session_start();
     $admin_id = $_SESSION['admin_name'];
 
     if(!isset($admin_id)){
-        header('location:login.php');
+        header('location:../login.php');
     }
 
     if(isset($_POST['logout'])){
         session_destroy();
-        header('location:login.php');
+        header('location:../login.php');
     }
 
     // удаление продуктов
@@ -18,7 +18,7 @@
 
         mysqli_query($conn, "DELETE FROM `users` WHERE id = '$delete_id'") or die('query failed');
         $message[] = 'user deleted successfully';
-        header('location:admin_user.php');
+        header('location:../admin/admin_user.php');
     }
 ?>
 <!DOCTYPE html>
@@ -27,11 +27,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <title>admin product page</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <title>admin user page</title>
 </head>
 <body>
-     <?php include 'admin_header.php';?>
+     <?php include '../admin/admin_header.php';?>
      <?php 
      if(isset($message)){
         foreach ($message as $message){
@@ -62,7 +62,7 @@
             <p>user type: <span style="color: <?php if($fetch_users['user_type'] == 'admin')
             {echo 'var(--orange)';}
             else{echo 'var(--purple)';} ?>"><?php echo $fetch_users['user_type']; ?></span></p>
-            <a href="admin_user.php?delete=<?php echo $fetch_users['id']; ?>" class="delete-btn" onclick="return confirm('delete this message?');">delete</a>
+            <a href="../admin/admin_user.php?delete=<?php echo $fetch_users['id']; ?>" class="delete-btn" onclick="return confirm('delete this message?');">delete</a>
         </div>
         <?php
          }
@@ -79,6 +79,6 @@
     </div>
    </section>
    <div class="line2"></div>
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="../scripts/admin.js"></script>
 </body>
 </html>
