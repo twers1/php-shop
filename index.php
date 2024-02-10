@@ -143,6 +143,7 @@
         </div>
     </div>
     <div class="line3"></div>
+    <?php include 'homeshop.php'; ?>
     <?php include 'footer.php'; ?>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
