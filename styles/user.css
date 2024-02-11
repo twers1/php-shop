@@ -17,6 +17,19 @@ ul {
     list-style: none;
 }
 
+sup {
+    position: absolute;
+    top: 11%;
+    background: #000;
+    color: #fff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    line-height: 15px;
+    text-align: center;
+    padding: .1rem;
+}
+
 .btn {
     padding: .8rem 2.5em;
     text-transform: uppercase;
@@ -172,6 +185,7 @@ input[type=submit]{
 
 .banner .detail span {
     color: #fff;
+    text-transform: uppercase;
 }
 
 /*------------------header-------------------*/
@@ -381,7 +395,8 @@ header .icons i:hover {
 /*-----------------story--------------*/
 
 .story,
-.discover {
+.discover,
+.newslatter {
     padding: 8% 6%;
     background-color: #f5f5f5;
     background-image: url('');
@@ -676,6 +691,70 @@ header .icons i:hover {
     top: 5%;
     font-weight: bold;
     font-size: 1.5rem;
+}
+/*-----------------newslatter--------------*/
+.newslatter {
+    position: relative;
+    text-align: center;
+}
+
+.newslatter:before,
+.about-us:before {
+    content: '';
+    position: absolute;
+    background: url('');
+    background-repeat: no-repeat;
+    top: -5%;
+    left: -17px;
+    width: 216px;
+    height: 245px;
+    background-size: 216px;
+    z-index: 1;
+}
+
+.newslatter:after,
+.form-container:before {
+    content: '';
+    position: absolute;
+    background: url('');
+    background-repeat: no-repeat;
+    bottom: 71px;
+    right: 0px;
+    width: 300px;
+    height: 320px;
+    background-size: 300px;
+    z-index: 1;
+}
+
+.newslatter p {
+    color: #555;
+    line-height: 1;
+    margin: .5rem 0;
+    font-size: 18px;
+}
+
+.newslatter input {
+    width: 50%;
+    margin: 0;
+}
+
+.newslatter button {
+    width: 20%;
+    background: var(--orange);
+    padding: 1rem 0;
+    border-radius: 5px;
+    margin: 0;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase
+}
+
+.client {
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1rem));
+    margin: 2rem auto;
+    padding-bottom: 3rem;
 }
 /*-----------------footer--------------*/
 footer {

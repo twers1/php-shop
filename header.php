@@ -19,8 +19,16 @@
             </nav>
             <div class="icons">
                 <i class="bx bxs-user" id="user-btn"></i>
-                <a href="wishlist.php"><i class="bx bx-heart"></i></a>
-                <a href="cart.php"><i class="bx bx-cart"></i></a>
+                <?php
+                $select_wishlist = mysqli_query($conn, "SELECT * FROM `wishlist` WHERE user_id = '$user_id'") or die('query failed');
+                $wishlist_num_rows = mysqli_num_rows($select_wishlist)
+                ?>
+                <a href="wishlist.php"><i class="bx bx-heart"></i><sup><?php echo $wishlist_num_rows; ?></sup></a>
+                <?php
+                $select_cart = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
+                $cart_num_rows = mysqli_num_rows($select_wishlist)
+                ?>
+                <a href="cart.php"><i class="bx bx-cart"></i><sup><?php echo $cart_num_rows; ?></sup></a>
                 <i class="bx bx-list-ul" id="menu-btn"></i>
             </div>
             <div class="user-box">

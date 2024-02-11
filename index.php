@@ -1,15 +1,52 @@
 <?php 
     include 'connection.php';
     session_start();
-    $admin_id = $_SESSION['user_name'];
+    $user_id = $_SESSION['user_id']; // Fixing variable name
 
-    if(!isset($admin_id)){
+    if(!isset($user_id)){ // Fixing variable name
         header('location:login.php');
     }
 
     if(isset($_POST['logout'])){
         session_destroy();
         header('location:login.php');
+    }
+
+    if(isset($_POST['add_to_wishlist'])){
+        $product_id = $_POST['product_id'];
+        $product_name = $_POST['product_name'];
+        $product_price = $_POST['product_price'];
+        $product_image = $_POST['product_image'];
+
+        // Fixing variable name
+        $select_wishlist = mysqli_query($conn, "SELECT * FROM `wishlist` WHERE name = '$product_name' AND user_id = '$user_id'") or die('query failed');
+        $cart_num = mysqli_query($conn, "SELECT * FROM `cart` WHERE name = '$product_name' AND user_id = '$user_id'") or die('query failed');
+
+        if(mysqli_num_rows($select_wishlist) > 0) {
+            $message[] = 'already added to wishlist';
+        } 
+        else {
+            mysqli_query($conn, "INSERT INTO `wishlist`(user_id, name, price, image) VALUES('$user_id', '$product_name', '$product_price', '$product_image')") or die('query failed');
+            $message[] = 'added to wishlist';
+        }
+    }
+
+    if(isset($_POST['add_to_cart'])){
+        $product_id = $_POST['product_id'];
+        $product_name = $_POST['product_name'];
+        $product_price = $_POST['product_price'];
+        $product_image = $_POST['product_image'];
+        $product_quantity = $_POST['product_quantity'];
+
+        $cart_num = mysqli_query($conn, "SELECT * FROM `cart` WHERE name = '$product_name' AND user_id = '$user_id'") or die('query failed');
+
+        if(mysqli_num_rows($cart_num) > 0){
+            $message[] = 'already added to cart';
+        }
+        else {
+            mysqli_query($conn, "INSERT INTO `cart`(user_id, name, price, image, quantity) VALUES('$user_id', '$product_name', '$product_price', '$product_image', '$product_quantity')") or die('query failed');
+            $message[] = 'added to cart';
+        }
     }
 ?>
 <style>
@@ -144,6 +181,31 @@
     </div>
     <div class="line3"></div>
     <?php include 'homeshop.php'; ?>
+    <div class="line2"></div>
+    <div class="newslatter">
+        <h1 class="title">Join Our To Newslatter</h1>
+        <p>Lorem ipsum dolor sit amet consectetur</p>
+        <input type="text" name="" placeholder="enter your email">
+        <button>subscribe now</button>
+    </div>
+    <div class="line3"></div>
+    <div class="client">
+        <div class="box">
+            <img src="" alt="">
+        </div>
+        <div class="box">
+            <img src="" alt="">
+        </div>
+        <div class="box">
+            <img src="" alt="">
+        </div>
+        <div class="box">
+            <img src="" alt="">
+        </div>
+        <div class="box">
+            <img src="" alt="">
+        </div>
+    </div>
     <?php include 'footer.php'; ?>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
