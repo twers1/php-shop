@@ -357,7 +357,8 @@ header .icons i:hover {
 }
 
 .services::before,
-.testimonial-fluid::before {
+.testimonial-fluid::before,
+.project::before{
     content: '';
     position: absolute;
     background-image: url('');
@@ -469,7 +470,9 @@ header .icons i:hover {
     z-index: 1;
 }
 
-.testimonial-fluid::after {
+.testimonial-fluid::after,
+.project::after,
+.banner::after {
     content: '';
     background-image: url('');
     position: absolute;
@@ -535,7 +538,8 @@ header .icons i:hover {
     background-size: 450px;
 }
 
-.discover::after {
+.discover::after,
+.team::before{
     content: '';
     background: url('');
     background-repeat: no-repeat;
@@ -764,7 +768,8 @@ footer {
     position: relative;
 }
 
-footer::before {
+footer::before,
+.features::before {
     position: absolute;
     content: '';
     background-image: url('img/hex.pnh');
@@ -874,6 +879,191 @@ footer .bottom-footer {
     border-top: 1px solid #000;
 }
 
+/*------------------about us -------------------*/
+.about-us {
+    background: #f5f5f5;
+    position: relative;
+    margin-top: -3.5rem;
+}
+
+.about-us::before {
+    background: url('');
+    width: 316px;
+    height: 245px;
+    background-size: 316px;
+    top: -15%;
+}
+
+.about-us .row,
+.project .row {
+    grid-template-columns: repeat(auto-fix, minmax(40rem, 1rem));
+    padding: 6% 4%;
+}
+
+.about-us .row p {
+    line-height: 2;
+    color: #555;
+    font-size: 18px;
+}
+
+.about-us .row img,
+.project img {
+    width: 100%;
+    border-radius: 10px;
+}
+/*------------------about us  features-------------------*/
+.features {
+    background: var(--orange);
+    padding: 3rem 0;
+    margin-top: -3.5rem;
+    min-height: 100vh;
+    position: relative;
+}
+
+.features .title span {
+    color: #fff;
+}
+
+.features::after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    background: url('');
+    right: 0;
+    width: 225px;
+    height: 220px;
+    background-size: 225px;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.features .row {
+    padding: 2% 4%;
+    padding-top: 4%;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.features .row .box {
+    box-shadow: var(--box-shadow);
+    padding: 1rem 0;
+    margin: 1rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.features .row .box h4 {
+    font-size: 1.3rem;
+    margin-bottom: .5rem;
+}
+
+.features .row .box img {
+    background: #fff;
+    box-shadow: var(--box-shadow);
+    border-radius: 50%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+/*---------------------about us team----------*/
+.team {
+    text-align: center;
+    background: #f5f5f5;
+    padding: 3rem 0;
+    position: relative;
+    margin-top: -3rem;
+}
+
+.team::before {
+    width: 225px;
+    height: -420px;
+    background-size: 225px;
+    left: -50px;
+    top: -100px;
+}
+
+.team .row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.team .row img {
+    width: 100%;
+    border-radius: 5px;
+}
+.team .row .box {
+    margin: 1rem;
+}
+
+.team .row .box .detail {
+    border-radius: 5px;
+    padding: 1rem;
+    line-height: 1.5;
+    background: #fff;
+    margin-top: .5rem;
+}
+
+.team .row .box .detail:hover {
+    background: var(--orange);
+
+}
+
+.team .row .box .detail h4 {
+    font-size: 1.2rem;
+}
+
+.team .row .box .detail i {
+    color: #555;
+    margin: .3rem;
+    cursor: pointer;
+}
+/*---------------------about us project----------*/
+.project { 
+    background: var(--orange);
+    padding: 3rem 0;
+    margin-top: -3.5rem;
+    position: relative;
+}
+
+.project::before {
+    z-index: 1;
+}
+
+.project span {
+    color: #000;
+}
+
+.project .row .box {
+    margin: 1rem;
+}
+/*---------------------about us ideas screen----------*/
+.ideas {
+    background: #f5f5f5;
+    padding: 3rem 0;
+    margin-top: -3.5rem;
+}
+
+.ideas .title h1 {
+    font-size: 2rem;
+}
+
+.ideas h2 {
+    color: #555;
+    font-size: 20px;
+}
+
+.ideas .box {
+    margin: 1rem;
+    line-height: 1.5;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 5px;
+}
+
+.ideas .row .box i {
+    font-size: 3.5rem;
+    color: var(--orange);
+
+}
 /*---------------------media screen----------*/
 @media (max-width: 991px) {
     #menu-btn {
