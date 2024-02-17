@@ -83,12 +83,13 @@
                            
                 
             ?>
-            <form method="post" class="box">
+            <form method="post">
               <div class="box-container">
-              <div class="box">
+              <div class="detail">
                     <img src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
                     <div class="price">$<?php echo $fetch_products['price']; ?></div>
                     <div class="name"><?php echo $fetch_products['name']; ?></div>
+                    <div class="detail"><?php echo $fetch_products['product_detail']; ?></div>
 
                     <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
                     <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">

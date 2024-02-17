@@ -1064,6 +1064,61 @@ footer .bottom-footer {
     color: var(--orange);
 
 }
+/*---------------------view page----------*/
+.view_page {
+    padding: 5% 8%;
+}
+
+.view_page form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+    justify-content: center;
+    align-items: center;
+}
+
+.view_page form img {
+    width: 95%;
+    height: 85%;
+    padding: .5rem;
+    border-radius: 50%;
+    background: var(--orange);
+}
+
+.view_page form .name {
+    font-size: 3rem;
+    margin-bottom: -1rem;
+    text-transform: capitalize;
+    color: var(--orange);
+}
+
+.view_page form .detail,
+.view_page form .price {
+    font-size: 18px;
+    color: gray;
+    line-height: 2;
+}
+
+.view_page page .price {
+    font-size: 24px;
+    position: relative;
+    left: 0;
+}
+
+.view_page form .quantity {
+    width: 60%;
+    box-shadow: none;
+    border: 2px solid var(--orange);
+    border-radius: 3px;
+    margin-top: 1rem;
+}
+
+.view_page button {
+    color: #000;
+    outline: none;
+    margin-top: 1rem;
+    padding: .8rem 1rem;
+    cursor: pointer;
+}
 /*---------------------media screen----------*/
 @media (max-width: 991px) {
     #menu-btn {
