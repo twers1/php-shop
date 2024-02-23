@@ -1,3 +1,17 @@
+<?php
+  include 'connection.php';
+  session_start();
+  $user_id = $_SESSION['user_id']; // Fixing variable name
+
+  if(!isset($user_id)){ // Fixing variable name
+      header('location:login.php');
+  }
+
+  if(isset($_POST['logout'])){
+      session_destroy();
+      header('location:login.php');
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,6 +66,7 @@
             ?>
         </div> <!-- Здесь закрывается <div class="popular-brands-content"> -->
   </section>
+  
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 

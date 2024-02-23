@@ -11,7 +11,7 @@
         <div class="flex">
             <a href="admin_panel.php" class="logo"><img src="img/logo.png" alt="logo"></a>
             <nav class="navbar">
-                <a href="homeshop.php">home</a>
+                <a href="index.php">home</a>
                 <a href="about.php">about us</a>
                 <a href="shop.php">shop</a>
                 <a href="order.php">order</a>

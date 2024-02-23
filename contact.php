@@ -47,8 +47,6 @@
             <a href="index.php">home</a><span>/ contact</span>
         </div>
     </div>
-    <div class="line"></div>
-    <div class="line2"></div>
     <div class="services">
         <div class="row">
             <div class="box">
