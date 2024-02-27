@@ -1,17 +1,4 @@
-<?php
-  include 'connection.php';
-  session_start();
-  $user_id = $_SESSION['user_id']; // Fixing variable name
 
-  if(!isset($user_id)){ // Fixing variable name
-      header('location:login.php');
-  }
-
-  if(isset($_POST['logout'])){
-      session_destroy();
-      header('location:login.php');
-  }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/slick.css">
-    <link rel="stylesheet" href="./styles/user.css">
+    <link rel="stylesheet" href="../styles/slick.css">
+    <link rel="stylesheet" href="../styles/user.css">
     <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
     <title>Document</title>
@@ -51,7 +38,7 @@
                     <input type="hidden" name="product_quantity" value="1" min="1">
                     <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
                     <div class="icon">
-                        <a href="view_page.php?pid=<?php echo $fetch_products['id']; ?>" class="bx bx-low-vision"></a>
+                        <a href="./user/view_page.php?pid=<?php echo $fetch_products['id']; ?>" class="bx bx-low-vision"></a>
                         <button type="submit" name="add_to_wishlist" class="bx bx-heart"></button>
                         <button type="submit" name="add_to_cart" class="bx bx-cart"></button>
                     </div>

@@ -1,15 +1,15 @@
 <?php 
-    include 'connection.php';
+    include '../connection.php';
     session_start();
-    $user_id = $_SESSION['user_id']; // Fixing variable name
+    $user_id = $_SESSION['user_id']; 
 
-    if(!isset($user_id)){ // Fixing variable name
-        header('location:login.php');
+    if(!isset($user_id)){ 
+        header('location:../login.php');
     }
 
     if(isset($_POST['logout'])){
         session_destroy();
-        header('location:login.php');
+        header('location:../login.php');
     }
     if(isset($_POST['add_to_wishlist'])){
         $product_id = $_POST['product_id'];
@@ -17,7 +17,7 @@
         $product_price = $_POST['product_price'];
         $product_image = $_POST['product_image'];
 
-        // Fixing variable name
+   
         $select_wishlist = mysqli_query($conn, "SELECT * FROM `wishlist` WHERE name = '$product_name' AND user_id = '$user_id'") or die('query failed');
         $cart_num = mysqli_query($conn, "SELECT * FROM `cart` WHERE name = '$product_name' AND user_id = '$user_id'") or die('query failed');
 
@@ -50,7 +50,7 @@
    
 ?>
 <style>
-    <?php include './styles/user.css'; ?>
+    <?php include '../styles/user.css'; ?>
 </style>
 
 <!DOCTYPE html>
@@ -113,6 +113,6 @@
   </section>
     <div class="line3"></div>
     <?php include 'footer.php'; ?>
-    <script type="" src="./scripts/user.js"></script>
+    <script type="" src="../scripts/user.js"></script>
 </body>
 </html>

@@ -1,9 +1,9 @@
 <?php 
     include 'connection.php';
     session_start();
-    $user_id = $_SESSION['user_id']; // Fixing variable name
+    $user_id = $_SESSION['user_id']; 
 
-    if(!isset($user_id)){ // Fixing variable name
+    if(!isset($user_id)){ 
         header('location:login.php');
     }
 
@@ -18,7 +18,6 @@
         $product_price = $_POST['product_price'];
         $product_image = $_POST['product_image'];
 
-        // Fixing variable name
         $select_wishlist = mysqli_query($conn, "SELECT * FROM `wishlist` WHERE name = '$product_name' AND user_id = '$user_id'") or die('query failed');
         $cart_num = mysqli_query($conn, "SELECT * FROM `cart` WHERE name = '$product_name' AND user_id = '$user_id'") or die('query failed');
 
@@ -61,7 +60,7 @@
     <title>Document</title>
 </head>
 <body>
-    <?php include 'header.php'; ?>
+    <?php include './user/header_for_index.php'; ?>
     <!-- home section starts -->
     <div class="container-fluid">
         <div class="hero-slider">
@@ -71,7 +70,7 @@
                     <span>test the quality</span>
                     <h1>organic premium <br>Honey</h1>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Saepe vitae nisi fuga dicta eos, vero dolores? Quas, maiores a dolore quae iste, aperiam doloribus hic quaerat est impedit magni provident?</p>
-                    <a href="shop.php" class="btn">shop now</a>
+                    <a href="./user/shop.php" class="btn">shop now</a>
                 </div>
             </div>
             <div class="slider-item">
@@ -123,7 +122,7 @@
                 <span>our story</span>
                 <h1>production of natural honey since 1998</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab corporis tempore voluptate aliquid minima qui in! Dolor eaque laborum pariatur quas doloribus quae molestiae similique sit expedita, modi nemo aperiam!</p>
-                <a href="shop.php" class="btn">show now</a>
+                <a href="./user/shop.php" class="btn">show now</a>
             </div>
             <div class="box">
                 <img src="" alt="">
@@ -173,14 +172,14 @@
             <h1 class="title">organic money be healthy</h1>
             <span>buy now and save 30% off!</span>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus animi, neque molestiae quae a ut nemo ipsam adipisci voluptate esse, cupiditate eaque ullam cumque officiis laudantium ad magnam aspernatur. Provident!</p>
-            <a href="shop.php" class="btn">discover now</a>
+            <a href="./user/shop.php" class="btn">discover now</a>
         </div>
         <div class="img-box">
             <img src="" alt="">
         </div>
     </div>
     <div class="line3"></div>
-    <?php include 'homeshop.php'; ?>
+    <?php include './user/homeshop.php'; ?>
     <div class="line2"></div>
     <div class="newslatter">
         <h1 class="title">Join Our To Newslatter</h1>
@@ -206,7 +205,7 @@
             <img src="" alt="">
         </div>
     </div>
-    <?php include 'footer.php'; ?>
+    <?php include './user/footer.php'; ?>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>

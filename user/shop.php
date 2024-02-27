@@ -1,15 +1,15 @@
 <?php 
-    include 'connection.php';
+    include '../connection.php';
     session_start();
     $user_id = $_SESSION['user_id']; // Fixing variable name
 
     if(!isset($user_id)){ // Fixing variable name
-        header('location:login.php');
+        header('location:../login.php');
     }
 
     if(isset($_POST['logout'])){
         session_destroy();
-        header('location:login.php');
+        header('location:../login.php');
     }
     if(isset($_POST['add_to_wishlist'])){
         $product_id = $_POST['product_id'];
@@ -50,7 +50,7 @@
    
 ?>
 <style>
-    <?php include './styles/user.css'; ?>
+     <?php include '../styles/user.css'; ?>
 </style>
 
 <!DOCTYPE html>
@@ -109,6 +109,6 @@
   </section>
     <div class="line3"></div>
     <?php include 'footer.php'; ?>
-    <script type="" src="./scripts/user.js"></script>
+    <script type="" src="../scripts/user.js"></script>
 </body>
 </html>
