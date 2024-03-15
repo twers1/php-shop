@@ -37,9 +37,8 @@
         header('location:wishlist.php');
     }
 
-    // удаление продуктов из wishlist
+    // удаление всех продуктов из wishlist для данного пользователя
     if(isset($_GET['delete_all'])){
-        $delete_id = $_GET['delete_all'];
         mysqli_query($conn, "DELETE FROM `wishlist` WHERE user_id = '$user_id'") or die('query failed');
         header('location:wishlist.php');
     }
@@ -72,43 +71,39 @@
         <div class="box-container">
             <?php
             $grand_total=0;
-               if(isset($_GET['pid'])){
-                    
-                    $pid = $_GET['pid'];
-                    $select_wishlist = mysqli_query($conn, "SELECT * FROM `wishlist`") or die('query failed');
-                    if(mysqli_num_rows($select_wishlist) > 0){
-                       while($fetch_wishlist = mysqli_fetch_assoc($select_wishlist)){
-                           
-                
+            // Выборка товаров из wishlist для данного пользователя
+            $select_wishlist = mysqli_query($conn, "SELECT * FROM `wishlist` WHERE user_id = '$user_id'") or die('query failed');
+            if(mysqli_num_rows($select_wishlist) > 0){
+                while($fetch_wishlist = mysqli_fetch_assoc($select_wishlist)){
             ?>
             <form method="post">
-              <div class="box-container">
-              <div class="detail">
-                    <img src="uploaded_img/<?php echo $fetch_wishlist['image']; ?>" alt="">
-                    <div class="price">$<?php echo $fetch_wishlist['price']; ?></div>
-                    <div class="name"><?php echo $fetch_wishlist['name']; ?></div>
-                    <div class="detail"><?php echo $fetch_products['product_detail']; ?></div>
+                <div class="box">
+                    <div class="detail">
+                        <img src="../uploaded_img/<?php echo $fetch_wishlist['image']; ?>" alt="">
+                        <div class="price">$<?php echo $fetch_wishlist['price']; ?></div>
+                        <div class="name"><?php echo $fetch_wishlist['name']; ?></div>
+                        <!-- Вывод дополнительной информации о товаре (например, product_detail) требует соответствующего поля в базе данных -->
+                        <!-- <div class="detail"><?php echo $fetch_wishlist['product_detail']; ?></div> -->
 
-                    <input type="hidden" name="product_id" value="<?php echo $fetch_wishlist['id']; ?>">
-                    <input type="hidden" name="product_name" value="<?php echo $fetch_wishlist['name']; ?>">
-                    <input type="hidden" name="product_price" value="<?php echo $fetch_wishlist['price']; ?>">
+                        <input type="hidden" name="product_id" value="<?php echo $fetch_wishlist['id']; ?>">
+                        <input type="hidden" name="product_name" value="<?php echo $fetch_wishlist['name']; ?>">
+                        <input type="hidden" name="product_price" value="<?php echo $fetch_wishlist['price']; ?>">
+                        <input type="hidden" name="product_image" value="<?php echo $fetch_wishlist['image']; ?>">
 
-                    <input type="hidden" name="product_image" value="<?php echo $fetch_wishlist['image']; ?>">
-                    <div class="icon">
-                        <a href="view_page.php?pid=<?php echo $fetch_wishlist['id']; ?>" class="bx bx-search"></a>
-                        <a href="wishlist.php?pid=<?php echo $fetch_wishlist['id']; ?>" class="bx bx-x" onclick="return confirm('delete this from wishlist?');"></a>
-                        <button type="submit" name="add_to_cart" class="bx bx-cart"></button>
+                        <div class="icon">
+                            <a href="view_page.php?pid=<?php echo $fetch_wishlist['id']; ?>" class="bx bx-search"></a>
+                            <a href="wishlist.php?delete=<?php echo $fetch_wishlist['id']; ?>" class="bx bx-x" onclick="return confirm('delete this from wishlist?');"></a>
+                            <button type="submit" name="add_to_cart" class="bx bx-cart"></button>
+                        </div>
                     </div>
                 </div>
-              </div>
             </form>
             <?php
-                            $grand_total += $fetch_wishlist['price'];
-                         }
-                        } else {
-                            echo '<p class="empty">your wishlist is empty</p>';
-                        }
-                    }
+                    $grand_total += $fetch_wishlist['price'];
+                }
+            } else {
+                echo '<p class="empty">your wishlist is empty</p>';
+            }
             ?>
         </div> 
         <div class="wishlist_total">

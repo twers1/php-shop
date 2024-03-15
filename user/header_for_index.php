@@ -26,9 +26,9 @@
                 <a href="./user/wishlist.php"><i class="bx bx-heart"></i><sup><?php echo $wishlist_num_rows; ?></sup></a>
                 <?php
                 $select_cart = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
-                $cart_num_rows = mysqli_num_rows($select_wishlist)
+                $cart_num_rows = mysqli_num_rows($select_cart); // Исправлено здесь
                 ?>
-                <a href="./user/cart.php"><i class="bx bx-cart"></i><sup><?php echo $cart_num_rows; ?></sup></a>
+                <a href="./user/cart.php"><i class="bx bx-cart"></i><sup><?php echo $cart_num_rows; ?></sup></a> <!-- Исправлено здесь -->
                 <i class="bx bx-list-ul" id="menu-btn"></i>
             </div>
             <div class="user-box">

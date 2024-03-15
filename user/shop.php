@@ -1,9 +1,9 @@
 <?php 
     include '../connection.php';
     session_start();
-    $user_id = $_SESSION['user_id']; // Fixing variable name
+    $user_id = $_SESSION['user_id'];
 
-    if(!isset($user_id)){ // Fixing variable name
+    if(!isset($user_id)){
         header('location:../login.php');
     }
 
@@ -11,15 +11,14 @@
         session_destroy();
         header('location:../login.php');
     }
+
     if(isset($_POST['add_to_wishlist'])){
-        $product_id = $_POST['product_id'];
+        $product_id = $_POST['add_to_wishlist'];
         $product_name = $_POST['product_name'];
         $product_price = $_POST['product_price'];
         $product_image = $_POST['product_image'];
 
-        // Fixing variable name
         $select_wishlist = mysqli_query($conn, "SELECT * FROM `wishlist` WHERE name = '$product_name' AND user_id = '$user_id'") or die('query failed');
-        $cart_num = mysqli_query($conn, "SELECT * FROM `cart` WHERE name = '$product_name' AND user_id = '$user_id'") or die('query failed');
 
         if(mysqli_num_rows($select_wishlist) > 0) {
             $message[] = 'already added to wishlist';
@@ -31,7 +30,7 @@
     }
 
     if(isset($_POST['add_to_cart'])){
-        $product_id = $_POST['product_id'];
+        $product_id = $_POST['add_to_cart'];
         $product_name = $_POST['product_name'];
         $product_price = $_POST['product_price'];
         $product_image = $_POST['product_image'];
@@ -49,8 +48,9 @@
     }
    
 ?>
+
 <style>
-     <?php include '../styles/user.css'; ?>
+    <?php include '../styles/user.css'; ?>
 </style>
 
 <!DOCTYPE html>
@@ -72,7 +72,7 @@
     <div class="line"></div>
     <div class="line2"></div>
     <section class="shop">
-      <h1 class="title">shop best sellers</h1>
+        <h1 class="title">shop best sellers</h1>
         <div class="box-container">
             <?php
                 $select_products = mysqli_query($conn, "SELECT * FROM `products` LIMIT 4") or die('query failed');
@@ -80,24 +80,24 @@
                     while($fetch_products = mysqli_fetch_assoc($select_products)){
             ?>
             <form method="post" class="box">
-              <div class="box-container">
-              <div class="box">
-                    <img src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
-                    <div class="price">$<?php echo $fetch_products['price']; ?></div>
-                    <div class="name"><?php echo $fetch_products['name']; ?></div>
+                <div class="box-container">
+                    <div class="box">
+                        <img src="../uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
+                        <div class="price">$<?php echo $fetch_products['price']; ?></div>
+                        <div class="name"><?php echo $fetch_products['name']; ?></div>
 
-                    <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
-                    <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
-                    <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
-                    <input type="hidden" name="product_quantity" value="1" min="1">
-                    <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
-                    <div class="icon">
-                        <a href="view_page.php?pid=<?php echo $fetch_products['id']; ?>" class="bx bx-low-vision"></a>
-                        <button type="submit" name="add_to_wishlist" class="bx bx-heart"></button>
-                        <button type="submit" name="add_to_cart" class="bx bx-cart"></button>
+                        <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
+                        <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+                        <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
+                        <input type="hidden" name="product_quantity" value="1" min="1">
+                        <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
+                        <div class="icon">
+                            <a href="view_page.php?pid=<?php echo $fetch_products['id']; ?>" class="bx bx-low-vision"></a>
+                            <button type="submit" name="add_to_wishlist" value="<?php echo $fetch_products['id']; ?>" class="bx bx-heart"></button>
+                            <button type="submit" name="add_to_cart" value="<?php echo $fetch_products['id']; ?>" class="bx bx-cart"></button>
+                        </div>
                     </div>
                 </div>
-              </div>
             </form>
             <?php
                     }
@@ -105,8 +105,8 @@
                     echo '<p class="empty">no product added yet</p>';
                 }
             ?>
-        </div> <!-- Здесь закрывается <div class="popular-brands-content"> -->
-  </section>
+        </div>
+    </section>
     <div class="line3"></div>
     <?php include 'footer.php'; ?>
     <script type="" src="../scripts/user.js"></script>
