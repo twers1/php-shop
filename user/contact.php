@@ -19,13 +19,12 @@
         $message = mysqli_real_escape_string($conn, $_POST['message']);
 
         $select_message = mysqli_query($conn, "SELECT * FROM `message` WHERE name = '$name' AND email = '$email' AND number = '$number' AND message = '$message'") or die('query failed');
-        if(mysli_num_rows($select_message) > 0 ){
-            echo 'message already send';
+        if(mysqli_num_rows($select_message) > 0){
+            echo 'message already sent';
         } else {
-            mysqli_query($conn, "INSERT INTO `message`(user_id, name, email, number, message) VALUES('$user_id', '$name', '$email', '$number', '$message')") or die('query failed');
+            mysqli_query($conn, "INSERT INTO `message` (user_id, name, email, number, message) VALUES ('$user_id', '$name', '$email', '$number', '$message')") or die('query failed');
         }
     }
-   
 ?>
 <style>
      <?php include '../styles/user.css'; ?>
@@ -36,13 +35,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>contact</title>
+    <title>Contact</title>
 </head>
 <body>
     <?php include 'header.php'; ?>
     <div class="banner">
         <div class="detail">
-            <h1>contact</h1>
+            <h1>Contact</h1>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius consectetur, voluptates natus</p>
             <a href="index.php">home</a><span>/ contact</span>
         </div>
@@ -74,50 +73,50 @@
     </div>
     <div class="line4"></div>
     <div class="form-container">
-        <h1 class="title">leave a message</h1>
+        <h1 class="title">Leave a Message</h1>
         <form action="" method="post">
             <div class="input-field">
-                <label>your name</label>
+                <label>Your Name</label>
                 <input type="text" name="name">
             </div>
             <div class="input-field">
-                <label>your email</label>
+                <label>Your Email</label>
                 <input type="text" name="email">
             </div>
             <div class="input-field">
-                <label>number</label>
+                <label>Number</label>
                 <input type="text" name="number">
             </div>
             <div class="input-field">
-                <label>your message</label>
+                <label>Your Message</label>
                 <textarea name="message"></textarea>
             </div>
-            <button type="submit" name="submit-btn">send message</button>
+            <button type="submit" name="submit-btn">Send Message</button>
         </form>
     </div>
     <div class="line"></div>
     <div class="line2"></div>
     <div class="address">
-        <h1 class="title">our contact</h1>
+        <h1 class="title">Our Contact</h1>
         <div class="row">
             <div class="box">
                 <i class="bx bx-map"></i>
                 <div>
-                    <h4>address</h4>
-                    <p>mosssssscow</p>
+                    <h4>Address</h4>
+                    <p>Moscow</p>
                 </div>
             </div>
             <div class="box">
                 <i class="bx bx-phone"></i>
                 <div>
-                    <h4>phone number</h4>
+                    <h4>Phone Number</h4>
                     <p>456789</p>
                 </div>
             </div>
             <div class="box">
                 <i class="bx bx-envelope"></i>
                 <div>
-                    <h4>email</h4>
+                    <h4>Email</h4>
                     <p>tarverdans15@gmail.com</p>
                 </div>
             </div>
